@@ -3,7 +3,9 @@ export interface Event {
     name: string;
     description: string;
     date:Date;
+    city:string;
     location:string;
     duration:string;
+    
   }
   

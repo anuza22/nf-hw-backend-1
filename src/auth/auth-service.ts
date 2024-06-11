@@ -12,14 +12,15 @@ class AuthService {
   private readonly jwtSecret = process.env.JWT_SECRET!;
   private readonly jwtRefreshSecret = process.env.JWT_REFRESH_SECRET!;
 
-  async registerUser(createUserDto: CreateUserDto): Promise<IUser> {
-    const { email, password, username } = createUserDto;
+  async registerUser(createUserDto: CreateUserDto): Promise<IUser> {   // Почему CreateUserDto вместо IUser, типы же одинковые?
+    const { email, password, username, city} = createUserDto;
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const newUser = new UserModel({
       email,
       username,
       password: hashedPassword,
+      city
     });
 
     await newUser.save();
